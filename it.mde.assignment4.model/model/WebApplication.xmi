@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webApplication:WebApplication
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:webApplication="http://www.example.org/webApplication"
+    xsi:schemaLocation="http://www.example.org/webApplication webApplication.ecore"
+    name="OnlineNews"
+    id="23">
+  <entities
+      name="News">
+    <attributes
+        name="news_id"
+        isPrimaryKey="true"/>
+    <attributes
+        name="title"
+        type="text"/>
+    <attributes
+        name="content"
+        type="text"/>
+    <attributes
+        name="publish_date"
+        type="date"/>
+    <attributes
+        name="pictures"
+        type="images"/>
+    <reference
+        name="author_name"
+        foreignKey="//@entities.1"/>
+  </entities>
+  <entities
+      name="Author">
+    <attributes
+        name="author_id"
+        isPrimaryKey="true"/>
+    <attributes
+        name="name"
+        type="string"/>
+    <attributes
+        name="password"
+        type="string"/>
+    <attributes
+        name="email"
+        type="string"/>
+    <attributes
+        name="author_image"
+        type="image"/>
+  </entities>
+  <entities
+      name="NewsCategory">
+    <attributes
+        name="category_id"
+        isPrimaryKey="true"/>
+    <attributes
+        name="category_name"
+        type="string"/>
+    <attributes
+        name="category_description"
+        type="text"/>
+    <reference
+        name="news_title"
+        foreignKey="//@entities.0"/>
+  </entities>
+  <forms name="Author Registration"
+      entity="//@entities.1">
+    <elements
+        name="Name"
+        label="Input name"
+        tooltip="TextBox"
+        attribute="//@entities.1/@attributes.1"/>
+    <elements
+        name="Email"
+        label="Input email address"
+        tooltip="EmailBox"
+        attribute="//@entities.1/@attributes.3"/>
+    <elements
+        name="Password"
+        label="Input password"
+        tooltip="passwordBox"
+        attribute="//@entities.1/@attributes.2"/>
+  </forms>
+  <pages name="NewsPortal">
+    <contents
+        name="BreakingNews">
+      <SContent
+          name="Number of News"
+          contentStyle="List"/>
+      <Dcontent
+          entity="//@entities.0">
+        <individualData
+            indexedAttribute="//@entities.0/@attributes.0">
+          <conceptHub
+              name="New president"
+              attribute="//@entities.0/@attributes.1"/>
+          <conceptHub
+              name="Election is done."
+              attribute="//@entities.0/@attributes.2"/>
+        </individualData>
+        <individualData
+            indexedAttribute="//@entities.1/@attributes.0"
+            order="1">
+          <conceptHub
+              name="Giorgio"
+              attribute="//@entities.1/@attributes.1"/>
+          <conceptHub
+              name="Image"
+              attribute="//@entities.1/@attributes.4"/>
+        </individualData>
+      </Dcontent>
+      <Dcontent
+          entity="//@entities.1"/>
+    </contents>
+  </pages>
+</webApplication:WebApplication>
